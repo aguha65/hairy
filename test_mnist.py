@@ -161,7 +161,7 @@ patience_increase = 2  # wait this much longer when a new best is
                        # found
 improvement_threshold = 0.995  # a relative improvement of this much is
                                # considered significant
-validation_frequency = min(n_train_batches, patience / 2)
+validation_frequency = 10 #min(n_train_batches, patience / 2)
                               # go through this many
                               # minibatche before checking the network
                               # on the validation set; in this case we
@@ -181,7 +181,7 @@ while (epoch < n_epochs) and (not done_looping):
 
         iter = (epoch - 1) * n_train_batches + minibatch_index
 
-        if iter % 100 == 0:
+        if iter % 10 == 0: ##############
             print 'training @ iter = ', iter
         cost_ij = train_model(minibatch_index)
 
@@ -218,9 +218,9 @@ while (epoch < n_epochs) and (not done_looping):
                       (epoch, (time.clock()-start_time)/60.0, minibatch_index + 1, n_train_batches,
                        test_score * 100.))
 
-        #if patience <= iter:
-        #    done_looping = True
-        #    break
+        if patience <= iter:
+            done_looping = True
+            break
 
 end_time = time.clock()
 print('Optimization complete.')
