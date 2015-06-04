@@ -16,7 +16,7 @@ from fully_connected import HiddenLayer
 from conv_layer import LeNetConvPoolLayer
 
 
-mnist = fetch_mldata('MNIST original')
+mnist = fetch_mldata('MNIST original', data_home='data')
 
 X = mnist.data.astype(theano.config.floatX) / 255
 Y = mnist.target.astype(np.int32)
